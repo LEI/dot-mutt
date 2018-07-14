@@ -17,8 +17,7 @@ role:
     # - mbsync / isync, mstmp, mu, khard
     # - gpgme
   link:
-    - ".muttrc"
-    - ".mutt/accounts/*:.mutt/accounts"
+    # - ".muttrc" # lineinfile sourc init instead?
     - ".mutt/colors/*:.mutt/colors"
     - ".mutt/aliases:.mutt"
     - ".mutt/binds:.mutt"
