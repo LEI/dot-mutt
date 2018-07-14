@@ -1,6 +1,8 @@
 ---
 role:
   pkg:
+    - name: ispell
+      os: ["darwin"]
     # - slang # or ncursea
     # - name: urlview
     #   os: ["linux"]
@@ -11,16 +13,23 @@ role:
       # and not --with-ui=ncurses?
     # - name: neomutt/neomutt/neomutt
     #   os: ["darwin"]
-    #   # brew edit neomutt: --disable-fcntl
-
-    # https://webgefrickel.de/blog/a-modern-mutt-setup
-    # - mbsync / isync, mstmp, mu, khard
+    #   --disable-fcntl
+    #   --with-gpgme
     # - gpgme
+    # - isync
+    # - khard
+    # - mstmp
+    # - mu
+    # - ripmime
+    # - w3m
+    # - vdirsyncer
+    # - pip3 install -I urlscan
   link:
+    - ".mailcap"
     - ".muttrc" # lineinfile sourc init instead?
     - ".mutt/colors/*:.mutt/colors"
     - ".mutt/aliases:.mutt"
     - ".mutt/binds:.mutt"
-    - ".mutt/status:.mutt"
+    - ".mutt/format:.mutt"
   install:
     - "mkdir -p ~/.mutt/cache/{headers,bodies}"

@@ -20,8 +20,8 @@ set certificate_file = ~/.mutt/certificates
 # Editor
 # set editor='vim +/^$ "+setlocal fo+=w spell" +noh'
 set edit_headers # cleanup: unmy_hdr *
-# set text_flowed
-# set tmpdir="~/"
+set text_flowed
+# set tmpdir = /tmp
 
 # HTML parser
 # set mailcap_path = ~/.mailcap # MAILCAP
@@ -34,14 +34,14 @@ auto_view text/html
 # set print_command='muttprint -P letter -F Helvetica -p TO_FILE:$HOME/mail.ps'
 
 # Outgoing
-set smtp_url="smtp://localhost:26"
+# set smtp_url="smtp://localhost:26"
 
 # Contact management
 set alias_file = ~/.mutt/aliases # =aliases
-#source $alias_file
+# source $alias_file
 
 # Index interface
-set sort = threads
+set sort = reverse-threads
 set sort_aux = last-date-received
 
 # # Index style
@@ -68,21 +68,25 @@ set mail_check = 120
 
 # bind generic,alias,attach,browser,editor,index,compose,pager,pgp,postpone ':' noop
 
+# Dont add a '+' to urls that wrap
+unset markers
+
+# Don't ask to confirm deletions
+# set delete
+
+# set help = no
+
 source ~/.mutt/binds
-source ~/.mutt/status
+source ~/.mutt/format
 
 # TODO: http://codesorcery.net/old/mutt/mutt-gnupg-howto
 # set imap_pass = "gpg -dq $HOME/.my-pwds.gpg |"
 # source ~/.mutt/gpg.rc
 
 # https://gitlab.com/muttmua/mutt/wikis/UseCases/MultiAccounts
-#set reverse_name=yes
-#set reverse_realname=yes
-#set use_from = yes
-
-# Use local muttrc to configure machine defaults
-# and setup accounts folder hooks, e.g. source ~/.mutt/accounts/gmail
-source ~/.muttrc.local
+# set reverse_name=yes
+# set reverse_realname=yes
+# set use_from = yes
 
 # folder-hook *user@gmail.com/ 'source ~/.mutt/work'
 # folder-hook *user@gmail.com/Family 'set realname = "Bob"'
@@ -90,5 +94,5 @@ source ~/.muttrc.local
 # # Editor interface
 # bind editor <space> noop
 
-# # Load local config file for local overrides
-# source `x=~/.muttrc.local; if [ -e "$x" ]; then echo "$x"; fi; echo /dev/null`
+# Load local config file for local overrides
+source `x=~/.muttrc.local; if [ -e "$x" ]; then echo "$x"; fi; echo /dev/null`
