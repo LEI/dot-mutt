@@ -1,0 +1,29 @@
+# vi: ft=muttrc
+
+# %b     number of mailboxes with new mail *
+# %d     number of deleted messages *
+# %f     the full pathname of the current mailbox
+# %F     number of flagged messages *
+# %h     local hostname
+# %l     size (in bytes) of the current mailbox *
+# %L     size (in bytes) of the messages shown (i.e., which match the current
+#         limit) *
+# %m     the number of messages in the mailbox *
+# %M     the number of messages shown (i.e., which match the current limit) *
+# %n     number of new messages in the mailbox *
+# %o     number of old unread messages *
+# %p     number of postponed messages *
+# %P     percentage of the way through the index
+# %r     modified/read-only/won't-write/attach-message  indicator,  according
+#         to $status_chars
+# %R     number of read messages *
+# %s     current sorting mode ($sort)
+# %S     current aux sorting method ($sort_aux)
+# %t     number of tagged messages *
+# %u     number of unread messages *
+# %v     Mutt version string
+# %V     currently active limit pattern, if any *
+# %>X    right justify the rest of the string and pad with "X"
+# %|X    pad to the end of the line with "X"
+# %*X    soft-fill with character "X" as pad
+#set status_format = "-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---"

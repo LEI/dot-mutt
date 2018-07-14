@@ -1,0 +1,10 @@
+# vi: ft=muttrc
+
+# Open a mail in BROWSER
+#macro attach 'V' "<pipe-entry>cat >~/.cache/mutt/mail.html && $BROWSER ~/.cache/mutt/mail.html && rm ~/.cache/mutt/mail.html<enter>"
+
+# List URLs with urlview
+# macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
+
+# Limit listing to last week
+# macro index .. <limit>~d<7d

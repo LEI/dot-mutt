@@ -1,0 +1,94 @@
+# ~/.muttrc
+# https://wiki.archlinux.org/index.php/Mutt
+# https://neomutt.org/contrib/useful-programs
+
+# Match terminal theme colors
+source ~/.mutt/colors/solarized-dark-16
+
+# Store message headers locally to speed things up
+set header_cache = ~/.mutt/cache/headers
+set message_cachedir = ~/.mutt/cache/bodies
+set certificate_file = ~/.mutt/certificates
+
+# Mailbox format
+# set mbox_type = Maildir
+# set folder="~/Maildir"
+# set spoolfile="="
+# set postponed="=drafts"
+# set record="="
+
+# Editor
+# set editor='vim +/^$ "+setlocal fo+=w spell" +noh'
+set edit_headers # cleanup: unmy_hdr *
+# set text_flowed
+# set tmpdir="~/"
+
+# HTML parser
+# set mailcap_path = ~/.mailcap # MAILCAP
+
+# Message formatting
+alternative_order text/plain text/html
+auto_view text/html
+# set pipe_decode
+# set print_decode
+# set print_command='muttprint -P letter -F Helvetica -p TO_FILE:$HOME/mail.ps'
+
+# Outgoing
+set smtp_url="smtp://localhost:26"
+
+# Contact management
+set alias_file = ~/.mutt/aliases # =aliases
+#source $alias_file
+
+# Index interface
+set sort = threads
+set sort_aux = last-date-received
+
+# # Index style
+# set date_format="%Y-%m-%d"
+# set index_format="%D %Z %-15.15L %s"
+
+# # mu search
+# unset wait_key
+# macro index S "<save-message>"
+# macro index s "<shell-escape>mufind "
+# macro index gs "<change-folder-readonly>~/.search<enter>"
+
+# Check for all subscribed IMAP folders
+set imap_check_subscribed
+
+# Keep the IMAP connection alive by polling intermittently (time in seconds)
+set imap_keepalive = 300
+
+# Allow Mutt to open a new IMAP connection automatically
+unset imap_passive
+
+# How often to check for new mail (time in seconds)
+set mail_check = 120
+
+# bind generic,alias,attach,browser,editor,index,compose,pager,pgp,postpone ':' noop
+
+source ~/.mutt/binds
+source ~/.mutt/status
+
+# TODO: http://codesorcery.net/old/mutt/mutt-gnupg-howto
+# set imap_pass = "gpg -dq $HOME/.my-pwds.gpg |"
+# source ~/.mutt/gpg.rc
+
+# https://gitlab.com/muttmua/mutt/wikis/UseCases/MultiAccounts
+#set reverse_name=yes
+#set reverse_realname=yes
+#set use_from = yes
+
+# Use local muttrc to configure machine defaults
+# and setup accounts folder hooks, e.g. source ~/.mutt/accounts/gmail
+source ~/.muttrc.local
+
+# folder-hook *user@gmail.com/ 'source ~/.mutt/work'
+# folder-hook *user@gmail.com/Family 'set realname = "Bob"'
+
+# # Editor interface
+# bind editor <space> noop
+
+# # Load local config file for local overrides
+# source `x=~/.muttrc.local; if [ -e "$x" ]; then echo "$x"; fi; echo /dev/null`

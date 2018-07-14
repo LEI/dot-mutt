@@ -1,0 +1,27 @@
+---
+role:
+  pkg:
+    # - slang # or ncursea
+    # - name: urlview
+    #   os: ["linux"]
+    # - lynx
+    - name: mutt
+      # os: ["!darwin"]
+      # eventually install -–with-s-lang
+      # and not --with-ui=ncurses?
+    # - name: neomutt/neomutt/neomutt
+    #   os: ["darwin"]
+    #   # brew edit neomutt: --disable-fcntl
+
+    # https://webgefrickel.de/blog/a-modern-mutt-setup
+    # - mbsync / isync, mstmp, mu, khard
+    # - gpgme
+  link:
+    - ".muttrc"
+    - ".mutt/accounts/*:.mutt/accounts"
+    - ".mutt/colors/*:.mutt/colors"
+    - ".mutt/aliases:.mutt"
+    - ".mutt/binds:.mutt"
+    - ".mutt/status:.mutt"
+  install:
+    - "mkdir -p ~/.mutt/cache/{headers,bodies}"
