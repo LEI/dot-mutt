@@ -25,11 +25,10 @@ role:
     # - vdirsyncer
     # - pip3 install -I urlscan
   link:
+    # - ".lynxrc"
     - ".mailcap"
-    - ".muttrc" # lineinfile sourc init instead?
-    - ".mutt/colors/*:.mutt/colors"
+    - ".muttrc" # Add line to source init instead?
+    - ".mutt/colors/*:.mutt/colors" # Custom themes
     - ".mutt/aliases:.mutt"
-    - ".mutt/binds:.mutt"
-    - ".mutt/format:.mutt"
   install:
     - "mkdir -p ~/.mutt/cache/{headers,bodies}"

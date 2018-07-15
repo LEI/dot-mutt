@@ -2,9 +2,6 @@
 # https://wiki.archlinux.org/index.php/Mutt
 # https://neomutt.org/contrib/useful-programs
 
-# Match terminal theme colors
-source ~/.mutt/colors/solarized-dark-16
-
 # Store message headers locally to speed things up
 set header_cache = ~/.mutt/cache/headers
 set message_cachedir = ~/.mutt/cache/bodies
@@ -94,5 +91,90 @@ source ~/.mutt/format
 # # Editor interface
 # bind editor <space> noop
 
+# Sidebar interface
+set sidebar_visible = yes
+set sidebar_width = 20
+set sidebar_short_path = yes
+set sidebar_next_new_wrap = yes
+set mail_check_stats
+set sidebar_format = '%B%?F? [%F]?%* %?N?%N/? %?S?%S?'
+
+# Format
+# %b     number of mailboxes with new mail *
+# %d     number of deleted messages *
+# %f     the full pathname of the current mailbox
+# %F     number of flagged messages *
+# %h     local hostname
+# %l     size (in bytes) of the current mailbox *
+# %L     size (in bytes) of the messages shown (i.e., which match the current
+#         limit) *
+# %m     the number of messages in the mailbox *
+# %M     the number of messages shown (i.e., which match the current limit) *
+# %n     number of new messages in the mailbox *
+# %o     number of old unread messages *
+# %p     number of postponed messages *
+# %P     percentage of the way through the index
+# %r     modified/read-only/won't-write/attach-message  indicator,  according
+#         to $status_chars
+# %R     number of read messages *
+# %s     current sorting mode ($sort)
+# %S     current aux sorting method ($sort_aux)
+# %t     number of tagged messages *
+# %u     number of unread messages *
+# %v     Mutt version string
+# %V     currently active limit pattern, if any *
+# %>X    right justify the rest of the string and pad with "X"
+# %|X    pad to the end of the line with "X"
+# %*X    soft-fill with character "X" as pad
+#set status_format = "-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---"
+set status_format = " %f [%r] [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?] (%s/%S)%> %P "
+
+# set status_format = "%f"
+# set date_format = "%m%d"
+# set index_format = "%Z %D %-15.15n %s"
+
+# Bindings
+
+# Sidebar
+# bind index,pager \Ck sidebar-prev
+# bind index,pager \Cj sidebar-next
+# bind index,pager \Co sidebar-open
+# bind index,pager <F3> sidebar-page-up
+# bind index,pager <F4> sidebar-page-down
+# bind index,pager \Cp sidebar-prev-new
+# bind index,pager \Cn sidebar-next-new
+# bind index,pager B sidebar-toggle-visible
+
+# TODO: remap bind index R recall-message
+bind index R imap-fetch-mail
+
+bind generic g  noop
+bind generic gg first-entry
+bind generic G last-entry
+
+# Remap heasers to H instead of h
+bind pager H display-toggle-weed
+
+# Remap J from nex-entry to ?
+# bind pager J next-entry
+
+bind pager g  noop
+bind pager gg top
+bind pager G bottom
+bind pager h previous-undeleted
+bind pager j next-line
+bind pager k previous-line
+bind pager l next-undeleted
+# bind pager <down> next-line
+# bind pager <up> previous-line
+bind attach,index g noop
+bind attach,index gg first-entry
+bind attach,index G last-entry # TODO: check original G map
+bind attach,index,pager \CD next-page
+bind attach,index,pager \CU previous-page
+
 # Load local config file for local overrides
 source `x=~/.muttrc.local; if [ -e "$x" ]; then echo "$x"; fi; echo /dev/null`
+
+# Match terminal theme colors
+source `if [ -e "$MUTT_COLORS" ]; then echo "~/.mutt/colors/$MUTT_COLORS"; fi; echo /dev/null`
