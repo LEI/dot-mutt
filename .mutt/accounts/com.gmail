@@ -1,15 +1,9 @@
 # vi: ft=muttrc
 
-# set hostname = gmail.com
-# set folder = "~/.mail/example"
+# Options hostname, folder, or smtp_url are not set in this file
+# Also imap_user, imap_pass, realname, from, and signature should be filled
 
-# set imap_user = $EMAIL
-# set imap_pass = "secret"
-
-# set realname = $USER
-# set from = $imap_user
-# set signature = ~/.signature
-
+# Mailbox options
 set spoolfile = +INBOX
 # Prompt to archive read messages on quit
 set mbox = "+[Gmail]/All Mail"
