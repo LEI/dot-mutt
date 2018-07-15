@@ -6,17 +6,20 @@
 set hostname = ssl0.ovh.net
 
 # Receive options
-set folder = imaps://$hostname:993 # ~/.mail/example.ovh.net
+set folder = imaps://$hostname:993
+# set folder = ~/.mail/example.ovh.net
+# mailboxes +inbox +drafts +sent +spam +trash
 set imap_user = $EMAIL # example@ovh.net
 set imap_pass = ""
 
 # Send options
 set smtp_url = smtps://$imap_user:$imap_pass@$hostname:465 # 587
+# set smtp_pass = ""
 set realname = $USER
 set from = $imap_user
 set signature = ~/.signature
 
-set certificate_file = ~/.mutt/net.ovh.example/certificates
+# set certificate_file = ~/.mutt/net.ovh.example/certificates
 
 # account-hook $folder "set imap_user=$imap_user imap_pass=$imap_pass"
 

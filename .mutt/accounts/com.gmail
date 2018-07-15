@@ -6,8 +6,7 @@
 # Mailbox options
 set spoolfile = +INBOX
 # Prompt to archive read messages on quit
-set mbox = "+[Gmail]/All Mail"
-# Ignore mbox (above)
+# set mbox = "+[Gmail]/All Mail"
 set move = no
 set trash = "+[Gmail]/Bin"
 set postponed = "+[Gmail]/Drafts"
@@ -15,6 +14,12 @@ set postponed = "+[Gmail]/Drafts"
 set record = "" # Handled by Google "+[Gmail]/Sent Mail"
 # set spam? = "+[Gmail]/Spam"
 # set star? = "+[Gmail]/Starred"
+
+# Match mbsync mailboxes
+# set spoolfile = +inbox
+# set postponed = +drafts
+# set trash = +trash
+# set record = ""
 
 # Connection options
 set smtp_authenticators = login

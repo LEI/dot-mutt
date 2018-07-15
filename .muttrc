@@ -174,5 +174,5 @@ bind attach,index,pager \CU previous-page
 # Load local config file for local overrides
 source `x=~/.muttrc.local; if [ -e "$x" ]; then echo "$x"; fi; echo /dev/null`
 
-# Match terminal theme colors
-source `if [ -e "$MUTT_COLORS" ]; then echo "~/.mutt/colors/$MUTT_COLORS"; fi; echo /dev/null`
+# Match terminal theme colors (TODO: `$MUTT_COLORS`)
+source ~/.mutt/colors/solarized-dark-16

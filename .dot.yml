@@ -16,9 +16,9 @@ role:
     #   --disable-fcntl
     #   --with-gpgme
     # - gpgme
-    - isync
+    - isync # Requires ~/.mbsyncrc
     # - khard
-    # - mstmp
+    # - msmtp # Requires ~/.msmtprc
     # - mu
     # - ripmime
     # - w3m
@@ -33,3 +33,5 @@ role:
     - ".mutt/aliases:.mutt"
   install:
     - "mkdir -p ~/.mutt/cache/{headers,bodies}"
+  # cron: test -f ~/.mbsyncrc
+  #   - "mbsync --all --verbose"
