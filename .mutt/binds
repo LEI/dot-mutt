@@ -8,8 +8,11 @@ bind generic g  noop
 bind generic gg first-entry
 bind generic G last-entry
 
-# Remap h to H
+# Remap heasers to H instead of h
 bind pager H display-toggle-weed
+
+# Remap J from nex-entry to ?
+# bind pager J next-entry
 
 bind pager h previous-undeleted
 bind pager j next-line
