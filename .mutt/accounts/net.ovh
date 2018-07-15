@@ -33,9 +33,3 @@ set smtp_authenticators = login
 # unset ssl_starttls
 set ssl_use_sslv2
 set ssl_use_sslv3
-
-# # unset folder
-# source net.ovh.imap
-
-# # unset smtp_url
-# source net.ovh.smtp

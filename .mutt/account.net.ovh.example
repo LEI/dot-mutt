@@ -1,8 +1,17 @@
 # vi: ft=muttrc
 
-set imap_user = $EMAIL # user@ovh.net
+# Important: set all options to avoid overlap
+# when switching accounts
+
+set hostname = ssl0.ovh.net
+
+# Receive options
+set folder = imaps://$hostname:993 # ~/.mail/example.ovh.net
+set imap_user = $EMAIL # example@ovh.net
 set imap_pass = ""
 
+# Send options
+set smtp_url = smtps://$imap_user:$imap_pass@$hostname:465 # 587
 set realname = $USER
 set from = $imap_user
 set signature = ~/.signature
@@ -11,8 +20,4 @@ set certificate_file = ~/.mutt/net.ovh.example/certificates
 
 # account-hook $folder "set imap_user=$imap_user imap_pass=$imap_pass"
 
-# Important: set all account options to avoid overlap
-source accounts/net.ovh # .ssl0
-# set hostname = ssl0.ovh.net
-source accounts/net.ovh.imap
-source accounts/net.ovh.smtp
+source accounts/net.ovh

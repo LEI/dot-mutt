@@ -1,4 +1,0 @@
-# vi: ft=muttrc
-
-# Receive options
-set folder = imaps://$hostname:993
