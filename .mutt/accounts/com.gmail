@@ -15,11 +15,13 @@ set record = "" # Handled by Google "+[Gmail]/Sent Mail"
 # set spam? = "+[Gmail]/Spam"
 # set star? = "+[Gmail]/Starred"
 
-# Match mbsync mailboxes
-# set spoolfile = +inbox
-# set postponed = +drafts
-# set trash = +trash
-# set record = ""
+# # https://gitlab.com/muttmua/mutt/wikis/ConfigTricks#building-a-list-of-mailboxes-on-the-fly
+# mailboxes = `echo ~/mail/inbox/*`
+# # Match mailboxes defined with mbsync
+# # set spoolfile = +inbox
+# # set postponed = +drafts
+# # set trash = +trash
+# # set record = ""
 
 # Connection options
 set smtp_authenticators = login

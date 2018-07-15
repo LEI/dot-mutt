@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# FOLDER="${1:-~/mail}"
+# Path to mu results (default: ~/Maildir/search)
+MUDIR="${2:-~/.mu/search}"
+
+echo "mu find search query: " >&2
+read -r query
+
+# [[ $answer == "" || $answer == "yes" || "$answer" == "y" ]]
+if [[ -n "$query" ]]; then
+  # mu index --rebuild --maildir "$FOLDER"
+  # rm -rf "$MUDIR"
+  mu find --clearlinks --format=links --linksdir="$MUDIR" "$query"
+  printf "%s\n" "push <change-folder-readonly>$MUDIR"
+  # <shell-escape>mu find --clearlinks --format=links --linksdir=~/Maildir/search
+  # <change-folder-readonly>~/Maildir/search
+# else
+#   printf "%s" "push <return>"
+fi

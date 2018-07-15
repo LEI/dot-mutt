@@ -7,4 +7,15 @@
 # macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
 
 # Limit listing to last week
-# macro index .. <limit>~d<7d
+macro index B <limit>~d<7d
+
+# Search according to user query
+# macro index <F8> "<shell-escape>mu find --clearlinks --format=links --linksdir=~/Maildir/search " "mu find"
+# Jumps to result list
+# macro index <F9> "<change-folder-readonly>~/Maildir/search" "mu find results"
+
+# set my_maildir = "$folder/test"
+macro index I "<enter-command>source '~/.mutt/scripts/mu-index $my_account $my_folder'<return>" "mu"
+# Search mu index
+macro index S "<enter-command>source '~/.mutt/scripts/mu-find |'<return>" "mu"
+# account-hook $folder "exec <shell-escape>mu index --maildir $folder --rebuild"

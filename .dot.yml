@@ -19,7 +19,7 @@ role:
     - isync # Requires ~/.mbsyncrc
     # - khard
     # - msmtp # Requires ~/.msmtprc
-    # - mu
+    - mu # (maildir-utils)
     # - ripmime
     # - w3m
     # - vdirsyncer
@@ -28,10 +28,17 @@ role:
     # - ".lynxrc"
     - ".mailcap"
     - ".muttrc" # Add line to source init instead?
-    - ".mutt/colors/*:.mutt/colors" # Custom themes
-    - ".mutt/accounts/*:.mutt/accounts"
     - ".mutt/aliases:.mutt"
+    - ".mutt/macros:.mutt"
+    - ".mutt/accounts/*:.mutt/accounts"
+    - ".mutt/colors/*:.mutt/colors" # Custom themes
+    - ".mutt/scripts/*:.mutt/scripts"
   install:
     - "mkdir -p ~/.mutt/cache/{headers,bodies}"
-  # cron: test -f ~/.mbsyncrc
-  #   - "mbsync --all --verbose"
+    # - "mu index --maildir ~/.mail"
+    # - ""
+  # cron:
+  #   - test -f ~/.mbsyncrc && mbsync --all # --verbose
+  #   - mu index --quiet # (on update: --rebuild)
+  # env:
+  #   maildir: ~/.mail

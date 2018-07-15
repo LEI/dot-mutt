@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+FOLDER="${1:-~/mail}"
+
+mu index --maildir "$FOLDER" --rebuild
