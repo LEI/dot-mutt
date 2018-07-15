@@ -1,0 +1,35 @@
+# vi: ft=muttrc
+
+set hostname = gmail.com
+
+# set imap_user = $EMAIL
+# set imap_pass = "secret"
+
+# set realname = $USER
+# set from = $imap_user
+# set signature = ~/.signature
+
+# Receive options
+set folder = imaps://imap.$hostname:993
+set spoolfile = +INBOX
+# Prompt to archive read messages on quit
+set mbox = "+[Gmail]/All Mail"
+# Ignore mbox (above)
+set move = no
+set trash = "+[Gmail]/Bin"
+set postponed = "+[Gmail]/Drafts"
+# set important? = "+[Gmail]/Important"
+set record = "" # Handled by Google "+[Gmail]/Sent Mail"
+# set spam? = "+[Gmail]/Spam"
+# set star? = "+[Gmail]/Starred"
+
+# Send options
+set smtp_url = smtps://$imap_user:$imap_pass@smtp.$hostname:465 # 587
+
+# Connection options
+set certificate_file = ~/.mutt/com.example/certificates
+set smtp_authenticators = login
+# set ssl_force_tls = yes
+# unset ssl_starttls
+set ssl_use_sslv2
+set ssl_use_sslv3

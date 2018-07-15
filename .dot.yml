@@ -6,7 +6,7 @@ role:
     # - slang # or ncursea
     # - name: urlview
     #   os: ["linux"]
-    # - lynx
+    - lynx
     - name: mutt
       # os: ["!darwin"]
       # eventually install -–with-s-lang
@@ -16,7 +16,7 @@ role:
     #   --disable-fcntl
     #   --with-gpgme
     # - gpgme
-    # - isync
+    - isync
     # - khard
     # - mstmp
     # - mu
@@ -29,6 +29,7 @@ role:
     - ".mailcap"
     - ".muttrc" # Add line to source init instead?
     - ".mutt/colors/*:.mutt/colors" # Custom themes
+    - ".mutt/accounts/*:.mutt/accounts"
     - ".mutt/aliases:.mutt"
   install:
     - "mkdir -p ~/.mutt/cache/{headers,bodies}"

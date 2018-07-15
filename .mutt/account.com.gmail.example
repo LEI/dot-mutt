@@ -1,0 +1,13 @@
+# vi: ft=muttrc
+
+set imap_user = $EMAIL # user@gmail.com
+set imap_pass = ""
+
+set realname = $USER
+set from = $imap_user
+set signature = ~/.signature
+
+# Important: set all account options to avoid overlap
+source accounts/com.gmail
+
+# set hostname = gmail.com

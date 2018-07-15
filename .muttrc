@@ -73,9 +73,6 @@ unset markers
 
 # set help = no
 
-source ~/.mutt/binds
-source ~/.mutt/format
-
 # TODO: http://codesorcery.net/old/mutt/mutt-gnupg-howto
 # set imap_pass = "gpg -dq $HOME/.my-pwds.gpg |"
 # source ~/.mutt/gpg.rc
