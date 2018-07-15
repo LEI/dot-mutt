@@ -9,8 +9,7 @@ set hostname = ssl0.ovh.net
 # set from = $imap_user
 # set signature = ~/.signature
 
-# Receive options
-set folder = imaps://$hostname:993
+# set folder = ""
 set spoolfile = +INBOX
 # Prompt to archive read messages on quit
 # set mbox = "+INBOX.*?"
@@ -34,3 +33,9 @@ set smtp_authenticators = login
 # unset ssl_starttls
 set ssl_use_sslv2
 set ssl_use_sslv3
+
+# # unset folder
+# source net.ovh.imap
+
+# # unset smtp_url
+# source net.ovh.smtp

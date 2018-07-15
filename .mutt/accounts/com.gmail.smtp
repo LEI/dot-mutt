@@ -1,0 +1,4 @@
+# vi: ft=muttrc
+
+# Send options
+set smtp_url = smtps://$imap_user:$imap_pass@smtp.$hostname:465 # 587

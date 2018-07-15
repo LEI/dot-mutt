@@ -143,6 +143,7 @@ set status_format = " %f [%r] [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%
 # bind index,pager B sidebar-toggle-visible
 
 # TODO: remap bind index R recall-message
+# bind index R imap-fetch-mail
 bind index R imap-fetch-mail
 
 bind generic g  noop

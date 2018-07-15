@@ -9,8 +9,7 @@ set hostname = gmail.com
 # set from = $imap_user
 # set signature = ~/.signature
 
-# Receive options
-set folder = imaps://imap.$hostname:993
+# set folder = ""
 set spoolfile = +INBOX
 # Prompt to archive read messages on quit
 set mbox = "+[Gmail]/All Mail"
@@ -23,13 +22,15 @@ set record = "" # Handled by Google "+[Gmail]/Sent Mail"
 # set spam? = "+[Gmail]/Spam"
 # set star? = "+[Gmail]/Starred"
 
-# Send options
-set smtp_url = smtps://$imap_user:$imap_pass@smtp.$hostname:465 # 587
-
 # Connection options
-set certificate_file = ~/.mutt/com.example/certificates
 set smtp_authenticators = login
 # set ssl_force_tls = yes
 # unset ssl_starttls
 set ssl_use_sslv2
 set ssl_use_sslv3
+
+# # unset folder
+# source com.gmail.imap
+
+# # unset smtp_url
+# source com.gmail.smtp

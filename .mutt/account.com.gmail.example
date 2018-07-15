@@ -1,13 +1,16 @@
 # vi: ft=muttrc
 
-set imap_user = $EMAIL # user@gmail.com
+set imap_user = $EMAIL # example@gmail.com
 set imap_pass = ""
 
 set realname = $USER
 set from = $imap_user
 set signature = ~/.signature
 
+set certificate_file = ~/.mutt/com.gmail.example/certificates
+
 # Important: set all account options to avoid overlap
 source accounts/com.gmail
-
 # set hostname = gmail.com
+source accounts/com.gmail.imap
+source accounts/com.gmail.smtp

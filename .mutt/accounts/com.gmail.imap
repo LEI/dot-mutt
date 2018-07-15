@@ -1,0 +1,4 @@
+# vi: ft=muttrc
+
+# Receive options
+set folder = imaps://imap.$hostname:993
