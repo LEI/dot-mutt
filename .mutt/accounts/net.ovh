@@ -5,17 +5,14 @@
 
 # Mailbox options
 set spoolfile = +INBOX
-# Prompt to archive read messages on quit
-# set mbox = "+INBOX.*?"
-# Ignore mbox (above)
-set move = no
 set trash = "+INBOX.INBOX.Trash"
 set postponed = "+INBOX.INBOX.Drafts"
-# set important? = "+[Gmail]/Important"
 set record = "+INBOX.INBOX.Sent"
-# set spam? = "+INBOX.INBOX.Junk"
-# set star? = "+[Gmail]/Starred"
-set move = no # Ignore mbox feature
+set move = no
+
+# Extra folders:
+# mbox = +INBOX.*?
+# +INBOX.INBOX.Junk
 
 # Connection options
 set certificate_file = ~/.mutt/com.example/certificates

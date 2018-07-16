@@ -5,15 +5,16 @@
 
 # Mailbox options
 set spoolfile = +INBOX
-# Prompt to archive read messages on quit
-# set mbox = "+[Gmail]/All Mail"
-set move = no
 set trash = "+[Gmail]/Bin"
 set postponed = "+[Gmail]/Drafts"
-# set important? = "+[Gmail]/Important"
 set record = "" # Handled by Google "+[Gmail]/Sent Mail"
-# set spam? = "+[Gmail]/Spam"
-# set star? = "+[Gmail]/Starred"
+set move = no
+
+# Extra folders:
+# mbox = "+[Gmail]/All Mail"
+# +[Gmail]/Important
+# +[Gmail]/Spam
+# +[Gmail]/Starred
 
 # # https://gitlab.com/muttmua/mutt/wikis/ConfigTricks#building-a-list-of-mailboxes-on-the-fly
 # mailboxes = `echo ~/mail/inbox/*`
