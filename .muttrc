@@ -1,6 +1,7 @@
 # ~/.muttrc
 # https://wiki.archlinux.org/index.php/Mutt
 # https://neomutt.org/contrib/useful-programs
+# Postfix setup: https://www.garron.me/en/mac/mutt-mac-imap.html
 
 # Store message headers locally to speed things up
 set header_cache = ~/.mutt/cache/headers
