@@ -1,6 +1,10 @@
-{{range $name, $account := .accounts -}}
+# vi: ft=mbsyncrc
+
+# ~/.mbsyncrc
+{{range $name, $account := .accounts}}
 IMAPAccount {{$name}}
-Host "{{$account.host}}"
+Host "{{$account.imap_host}}"
+Port "{{$account.imap_port}}"
 User "{{$account.user}}"{{if $account.pass}}
 Pass "{{$account.pass}}"{{end}}{{if $account.pass_cmd}}
 PassCmd "{{$account.pass_cmd}}"{{end}}
@@ -37,8 +41,7 @@ Expunge {{if $account.expunge}}{{$account.expunge}}{{else}}Both{{end}}
 # Save the synchronization state files in the relevant directory
 SyncState {{if $account.sync_state}}{{$account.sync_state}}{{else}}*{{end}}
 
-Group {{$name}}
-{{range .channels -}}
+Group {{$name}}{{range .channels}}
 Channel {{$name}}-{{.name}}
-{{end}}
-{{end}}
+{{- end}}
+{{end -}}

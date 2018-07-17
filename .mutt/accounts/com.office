@@ -3,8 +3,6 @@
 # Options hostname, folder, or smtp_url are not set in this file
 # Also imap_user, imap_pass, realname, from, and signature should be filled
 
-# https://github.com/ork/mutt-office365/blob/master/muttrc
-# TODO? https://github.com/ork/mutt-office365/blob/master/lang/en_US
 # IMAP folders
 set my_drafts="Brouillons"
 set my_drafts_noquote="Brouillons"
@@ -33,9 +31,3 @@ set ssl_force_tls = yes
 # unset ssl_starttls
 unset ssl_use_sslv2
 set ssl_use_sslv3
-
-# Bindings
-macro   index   gi "<change-folder>=INBOX<enter>"       "Go to Inbox"
-macro   index   gs "<change-folder>=$my_sent<enter>"    "Go to Sent"
-macro   index   gd "<change-folder>=$my_drafts<enter>"  "Go to Drafts"
-macro   index   gt "<change-folder>=$my_trash<enter>"   "Go to Trash"

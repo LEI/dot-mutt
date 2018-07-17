@@ -43,10 +43,12 @@ role:
   # env:
   #   maildir: ~/.mail
   template:
-    # TODO range - ".mutt/account.*.tpl"
-    - source: .mbsyncrc.tpl # :.mbsyncrc
-      include_vars: ~/.mailrc.yml # .mbsyncrc.tpl.local
-    # - ".msmtp.tpl"
+    - source: .mutt/account.tpl
+      include_vars: ~/.mailrc.yml
+    - source: .mbsyncrc.tpl
+      include_vars: ~/.mailrc.yml
+    - source: .msmtp.tpl
+      include_vars: ~/.mailrc.yml
   block: # in file
     .bashrc: |
       # Set GPG TTY

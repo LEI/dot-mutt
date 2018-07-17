@@ -1,3 +1,4 @@
+/.mutt/account
 /.mutt/account.*
-!/.mutt/account.*.example
+!/.mutt/account.tpl
 /.mutt/cache/

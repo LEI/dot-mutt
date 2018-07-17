@@ -19,3 +19,10 @@ macro index I "<enter-command>source '~/.mutt/scripts/mu-index $my_account $my_f
 # Search mu index
 macro index S "<enter-command>source '~/.mutt/scripts/mu-find |'<return>" "mu"
 # account-hook $folder "exec <shell-escape>mu index --maildir $folder --rebuild"
+
+# # Mailbox specific
+# # https://github.com/ork/mutt-office365/blob/master/lang/en_US
+# macro   index   gi "<change-folder>=INBOX<enter>"       "Go to Inbox"
+# macro   index   gs "<change-folder>=$my_sent<enter>"    "Go to Sent"
+# macro   index   gd "<change-folder>=$my_drafts<enter>"  "Go to Drafts"
+# macro   index   gt "<change-folder>=$my_trash<enter>"   "Go to Trash"
