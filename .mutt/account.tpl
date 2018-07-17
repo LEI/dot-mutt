@@ -4,7 +4,7 @@
 # when switching accounts
 
 {{range $name, $account := .accounts}}
-set hostname = "{{$account.host}}"
+set hostname = "{{if $account.host}}{{$account.host}}{{end}}"
 
 # Receive options
 set folder = {{if $account.folder}}{{$account.folder}}{{else}}imaps://{{$account.imap_host}}:{{$account.imap_port}}{{end}}
@@ -21,10 +21,10 @@ set signature = "{{$account.signature}}"
 
 # Mailbox options
 set spoolfile = "{{$account.spoolfile}}"
-set postponed = "{{$account.drafts}}"
-set record = "{{$account.sent}}"
+set postponed = "{{$account.postponed}}"
+set record = "{{$account.record}}"
 set trash = "{{$account.trash}}"
-set move = "{{$account.move}}"
+set move = "{{if $account.move}}yes{{else}}no{{end}}"
 
 # TODO
 # set attribution = "Le %d, %n a écrit :"
@@ -36,7 +36,7 @@ set move = "{{$account.move}}"
 # Connection options
 set certificate_file = "{{$account.certificate_file}}"
 set smtp_authenticators = "{{$account.smtp_authenticators}}"
-set ssl_force_tls = "{{$account.ssl_force_tls}}"
+set ssl_force_tls = "{{if $account.ssl_force_tls}}yes{{else}}no{{end}}"
 {{if not $account.ssl_starttls}}un{{end}}set ssl_starttls
 {{if not $account.ssl_use_sslv2}}un{{end}}set ssl_use_sslv2
 {{if not $account.ssl_use_sslv3}}un{{end}}set ssl_use_sslv3

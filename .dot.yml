@@ -44,6 +44,7 @@ role:
   #   maildir: ~/.mail
   template:
     - source: .mutt/account.tpl
+      target: .mutt
       include_vars: ~/.mailrc.yml
     - source: .mbsyncrc.tpl
       include_vars: ~/.mailrc.yml

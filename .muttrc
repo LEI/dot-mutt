@@ -181,3 +181,5 @@ source `f=~/.muttrc.local; if [ ! -s "$f" ]; then f=/dev/null; fi; echo "$f"`
 
 # Match terminal theme colors (TODO: `$MUTT_COLORS`)
 source ~/.mutt/colors/solarized-dark-16
+
+source `f=~/.mutt/account; if [ ! -s "$f" ]; then f=/dev/null; fi; echo "$f"`
