@@ -44,7 +44,8 @@ role:
   #   maildir: ~/.mail
   template:
     # TODO range - ".mutt/account.*.tpl"
-    - ".mbsyncrc.tpl" # :.mbsyncrc
+    - source: .mbsyncrc.tpl # :.mbsyncrc
+      include_vars: ~/.mailrc.yml # .mbsyncrc.tpl.local
     # - ".msmtp.tpl"
   # TODO include_vars per template
   vars:
