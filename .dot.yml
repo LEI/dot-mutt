@@ -47,28 +47,10 @@ role:
     - source: .mbsyncrc.tpl # :.mbsyncrc
       include_vars: ~/.mailrc.yml # .mbsyncrc.tpl.local
     # - ".msmtp.tpl"
-  # TODO include_vars per template
-  vars:
-    accounts:
-      gmail:
-        host: imap.gmail.com
-        user: example@gmail.com
-        # pass: ""
-        # pass_cmd: ""
-        ssl_type: IMAPS
-        auth_mechs: LOGIN
-        # certificate_file: ""
-        patterns: INBOX
-        channels:
-          - name: archive
-            remote: "[Gmail]/All Mail"
-            local: all
-          - name: drafts
-            remote: "[Gmail]/Drafts"
-            local: drafts
-          - name: sent
-            remote: "[Gmail]/Sent Mail"
-            local: sent
-          # - name: spam
-          #   remote: "[Gmail]/Spam"
-          #   local: spam
+  block: # in file
+    .bashrc: |
+      # Set GPG TTY
+      export GPG_TTY=$(tty)
+
+      # Refresh gpg-agent tty in case user switches into an X session
+      gpg-connect-agent updatestartuptty /bye >/dev/null
