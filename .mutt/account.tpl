@@ -3,7 +3,8 @@
 # Important: set all options to avoid overlap
 # when switching accounts
 
-{{range $name, $account := .accounts}}
+{{range $index, $account := .accounts}}
+# Account {{$account.name}}
 set hostname = "{{if $account.host}}{{$account.host}}{{end}}"
 
 # Receive options
