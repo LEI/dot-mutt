@@ -2,7 +2,7 @@
 
 # ~/.mbsyncrc
 {{range $index, $account := .accounts}}
-# Account {{$account.name}}
+# Account {{title $account.name}}
 IMAPAccount {{$account.name}}
 Host "{{$account.imap_host}}"
 Port "{{$account.imap_port}}"

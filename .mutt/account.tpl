@@ -2,45 +2,55 @@
 
 # Important: set all options to avoid overlap
 # when switching accounts
-
 {{range $index, $account := .accounts}}
-# Account {{$account.name}}
-set hostname = "{{if $account.host}}{{$account.host}}{{end}}"
-
-# Receive options
-set folder = {{if $account.folder}}{{$account.folder}}{{else}}imaps://{{$account.imap_host}}:{{$account.imap_port}}{{end}}
-{{if $account.mailboxes}}mailboxes {{$account.mailboxes}}{{end}}
-set imap_user = "{{$account.user}}"
-set imap_pass = "{{$account.pass}}"
-
-# Send options
-set smtp_url = "smtps://$imap_user:$imap_pass@{{$account.smtp_host}}:{{$account.smtp_port}}"
-# set smtp_pass = "{{$account.smtp_pass}}"
-set realname = "{{$account.realname}}"
-set from = "{{$account.from}}"
-set signature = "{{$account.signature}}"
-
-# Mailbox options
-set spoolfile = "{{$account.spoolfile}}"
-set postponed = "{{$account.postponed}}"
-set record = "{{$account.record}}"
-set trash = "{{$account.trash}}"
-set move = "{{if $account.move}}yes{{else}}no{{end}}"
-
-# TODO
-# set attribution = "Le %d, %n a écrit :"
-# set date_format = "!%d/%m/%Y %H:%M"
-# set charset = "utf-8"
-# set assumed_charset = "utf-8"
-# set send_charset = "utf-8:iso-8859-15:us-ascii"
-
-# Connection options
-set certificate_file = "{{$account.certificate_file}}"
-set smtp_authenticators = "{{$account.smtp_authenticators}}"
-set ssl_force_tls = "{{if $account.ssl_force_tls}}yes{{else}}no{{end}}"
-{{if not $account.ssl_starttls}}un{{end}}set ssl_starttls
-{{if not $account.ssl_use_sslv2}}un{{end}}set ssl_use_sslv2
-{{if not $account.ssl_use_sslv3}}un{{end}}set ssl_use_sslv3
-
+{{$folder := or $account.folder (print "imaps://" $account.imap_host ":" $account.imap_port) -}}
+# Account {{title $account.name}}
+{{if not $index -}}
+set folder = {{$folder}}
+set spoolfile = {{$account.spoolfile}}
+{{- end}}
+folder-hook "{{$account.name}}" "\
+    set hostname = {{if $account.host}}{{$account.host}}{{end}} \
+    \
+    # Receive options \
+    set folder = {{$folder}} \
+    {{if $account.mailboxes}}mailboxes {{$account.mailboxes}};{{end}} \
+    set imap_user = {{$account.user}} \
+    set imap_pass = {{$account.pass}} \
+    \
+    # Send options \
+    set smtp_url = smtps://$imap_user:$imap_pass@{{$account.smtp_host}}:{{$account.smtp_port}} \
+    # set smtp_pass = {{$account.smtp_pass}} \
+    set realname = {{$account.realname}} \
+    set from = {{$account.from}} \
+    set signature = {{$account.signature}} \
+    \
+    # Mailbox options \
+    set spoolfile = {{$account.spoolfile}} \
+    set postponed = {{$account.postponed}} \
+    set record = {{$account.record}} \
+    set trash = {{$account.trash}} \
+    set move = {{if $account.move}}yes{{else}}no{{end}} \
+    \
+    # TODO \
+    # set attribution = Le %d, %n a écrit : \
+    # set date_format = !%d/%m/%Y %H:%M \
+    # set charset = utf-8 \
+    # set assumed_charset = utf-8 \
+    # set send_charset = utf-8:iso-8859-15:us-ascii \
+    \
+    # Connection options \
+    set certificate_file = {{$account.certificate_file}} \
+    set smtp_authenticators = {{$account.smtp_authenticators}} \
+    set ssl_force_tls = {{if $account.ssl_force_tls}}yes{{else}}no{{end}} \
+    {{if not $account.ssl_starttls}}un{{end}}set ssl_starttls \
+    {{if not $account.ssl_use_sslv2}}un{{end}}set ssl_use_sslv2 \
+    {{if not $account.ssl_use_sslv3}}un{{end}}set ssl_use_sslv3 \
+"
 # account-hook $folder "set imap_user=$imap_user imap_pass=$imap_pass"
-{{end}}
+# folder-hook '{{$folder}}' 'unmailboxes *; mailboxes {{$account.spoolfile}}{{if $account.channels}}{{range $channel := $account.channels}} {{$channel.local}}{{end}}{{else}} {{$account.postponed}} {{$account.record}} {{$account.trash}}{{end}}'
+folder-hook '{{$folder}}' 'unmailboxes *; mailboxes `find {{$account.folder}} -mindepth 1 -maxdepth 1 -type d -exec echo -n " +{}" \;`'
+macro index <f{{add 2 $index}}> '<sync-mailbox><enter-command>set folder = {{$folder}}<enter><enter-command>set spoolfile = {{$account.spoolfile}}<enter><change-folder>!<enter>'
+# macro index <f4> '<sync-mailbox><enter-command>~/.mutt/{{$account.name}}<enter><change-folder>!<enter>'
+{{- end}}
+

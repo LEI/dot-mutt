@@ -1,5 +1,8 @@
 # vi: ft=muttrc
 
+# List the folders of the current mailbox
+macro index c '<change-folder>?<change-dir><home>^K=<enter>'
+
 # Open a mail in BROWSER
 #macro attach 'V' "<pipe-entry>cat >~/.cache/mutt/mail.html && $BROWSER ~/.cache/mutt/mail.html && rm ~/.cache/mutt/mail.html<enter>"
 

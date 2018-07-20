@@ -9,7 +9,7 @@ tls_trust_file /etc/ssl/certs/ca-certificates.crt
 logfile        ~/.msmtp.log
 
 {{range $index, $account := .accounts}}
-# Account {{$account.name}}
+# Account {{title $account.name}}
 account        {{$account.name}}
 host           {{$account.smtp_host}}
 port           {{$account.smtp_port}}
