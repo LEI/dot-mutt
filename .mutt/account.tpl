@@ -24,11 +24,15 @@ folder-hook "{{$account.name}}" "\
     {{end -}}
     \
     # Send options \
-    set smtp_url = smtps://{{if $account.smtp_user}}{{$account.smtp_user}}{{else}}$imap_user{{end}}@{{$account.smtp_host}}:{{$account.smtp_port}} \
-    set smtp_pass = {{if $account.smtp_pass}}{{$account.smtp_pass}}{{else}}$my_pass{{end}} \
+    set sendmail = ~/.mutt/scripts/msmtpq # -a {{$account.name}} \
+    set sendmail_wait = -1 \
+    #set smtp_url = smtps://{{if $account.smtp_user}}{{$account.smtp_user}}{{else}}$imap_user{{end}}@{{$account.smtp_host}}:{{$account.smtp_port}} \
+    #set smtp_pass = {{if $account.smtp_pass}}{{$account.smtp_pass}}{{else}}$my_pass{{end}} \
     set realname = {{$account.realname}} \
     set from = {{$account.from}} \
     set signature = {{$account.signature}} \
+    #set use_from = "yes" \
+    #set envelope_from = "yes" \
     \
     # Mailbox options \
     set spoolfile = {{$account.spoolfile}} \

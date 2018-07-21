@@ -40,8 +40,9 @@ role:
   # cron:
   #   - test -f ~/.mbsyncrc && mbsync --all # --verbose
   #   - mu index --quiet # (on update: --rebuild)
-  # env:
-  #   maildir: ~/.mail
+  env:
+    # maildir: ~/.mail
+    tls_trust_file: '{{if eq .OS "darwin" }}/usr/local/etc/openssl/cert.pem{{else}}/etc/ssl/certs/ca-certificates.crt{{end}}'
   template:
     - source: .mutt/account.tpl
       target: .mutt
