@@ -9,13 +9,17 @@ tls_trust_file /etc/ssl/certs/ca-certificates.crt
 logfile        ~/.msmtp.log
 
 {{range $index, $account := .accounts}}
-# Account {{title $account.name}}
+# {{title $account.name}} Account
 account        {{$account.name}}
 host           {{$account.smtp_host}}
 port           {{$account.smtp_port}}
 from           {{$account.from}}
 user           {{$account.user}}
+{{if $account.pass_cmd -}}
+passwordeval   "{{$account.pass_cmd}}"
+{{else if $account.pass -}}
 password       {{$account.pass}}
+{{end -}}
 {{end}}
 
 # Set a default account

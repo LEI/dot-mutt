@@ -2,13 +2,13 @@
 
 # ~/.mbsyncrc
 {{range $index, $account := .accounts}}
-# Account {{title $account.name}}
+# {{title $account.name}} Account
 IMAPAccount {{$account.name}}
 Host "{{$account.imap_host}}"
 Port "{{$account.imap_port}}"
-User "{{$account.user}}"{{if $account.pass}}
-Pass "{{$account.pass}}"{{end}}{{if $account.pass_cmd}}
-PassCmd "{{$account.pass_cmd}}"{{end}}
+User "{{$account.user}}"{{if $account.pass_cmd}}
+PassCmd "{{$account.pass_cmd}}"{{else if $account.pass}}
+Pass "{{$account.pass}}"{{end}}
 SSLType {{if $account.ssl_type}}{{$account.ssl_type}}{{else}}IMAPS{{end}}
 AuthMechs {{if $account.auth_mecs}}{{$account.auth_mecs}}{{else}}LOGIN{{end}}{{if $account.certificate_file}}
 CertificateFile "{{$account.certificate_file}}"{{end}}
@@ -22,15 +22,10 @@ MaildirStore {{$account.name}}-local
 Path ~/.mail/{{$account.name}}/
 Inbox ~/.mail/{{$account.name}}/inbox
 
-Channel {{$account.name}}-default
-Master :{{$account.name}}-remote:
-Slave :{{$account.name}}-local:
-Patterns {{if $account.patterns}}{{$account.patterns}}{{else}}INBOX{{end}}
-
 {{range .channels -}}
 Channel {{$account.name}}-{{.name}}
-Master :{{$account.name}}-remote:"{{.remote}}"
-Slave  :{{$account.name}}-local:{{.local}}{{if .patterns}}
+Master :{{$account.name}}-remote:{{if .remote}}"{{.remote}}"{{end}}
+Slave  :{{$account.name}}-local:{{or .local ""}}{{if .patterns}}
 Patterns {{.patterns}}
 {{- end}}
 

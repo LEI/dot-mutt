@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+set -e
+
+# GPG="$1"
+# if [[ -z "$GPG" ]]; then
+#   exit 1
+# fi
+# if hash pass 2>/dev/null; then
+#   CMD="pass $GPG"
+# elif hash gpg 2>/dev/null; then
+#   PWSTORE=~/.password-store
+#   if [[ ! -d "$PWSTORE" ]]; then
+#     exit 1
+#   fi
+#   CMD="gpg -dq $PWSTORE/$GPG.gpg"
+# else
+#   exit 1
+# fi
+# set -x
+# $CMD
+
+VAR="$1"
+shift
+VAL=$("$@")
+
+echo "my_$VAR=\"$VAL\""
+
+# ARGS=("$@")
+# echo "my_$VAR=\"${ARGS[*]}\""

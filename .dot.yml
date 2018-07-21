@@ -48,7 +48,7 @@ role:
       include_vars: ~/.mailrc.yml
     - source: .mbsyncrc.tpl
       include_vars: ~/.mailrc.yml
-    - source: .msmtp.tpl
+    - source: .msmtprc.tpl
       include_vars: ~/.mailrc.yml
   block: # in file
     .bashrc: |

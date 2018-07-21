@@ -4,8 +4,9 @@
 # when switching accounts
 {{range $index, $account := .accounts}}
 {{$folder := or $account.folder (print "imaps://" $account.imap_host ":" $account.imap_port) -}}
-# Account {{title $account.name}}
+# {{title $account.name}} Account
 {{if not $index -}}
+# FIXME: default account hook
 set folder = {{$folder}}
 set spoolfile = {{$account.spoolfile}}
 {{- end}}
@@ -14,13 +15,17 @@ folder-hook "{{$account.name}}" "\
     \
     # Receive options \
     set folder = {{$folder}} \
-    {{if $account.mailboxes}}mailboxes {{$account.mailboxes}};{{end}} \
     set imap_user = {{$account.user}} \
+    {{if $account.pass_cmd -}}
+    source \"~/.mutt/scripts/set-my pass {{$account.pass_cmd}}\" \
+    set imap_pass = $my_pass \
+    {{else -}}
     set imap_pass = {{$account.pass}} \
+    {{end -}}
     \
     # Send options \
-    set smtp_url = smtps://$imap_user:$imap_pass@{{$account.smtp_host}}:{{$account.smtp_port}} \
-    # set smtp_pass = {{$account.smtp_pass}} \
+    set smtp_url = smtps://{{if $account.smtp_user}}{{$account.smtp_user}}{{else}}$imap_user{{end}}@{{$account.smtp_host}}:{{$account.smtp_port}} \
+    set smtp_pass = {{if $account.smtp_pass}}{{$account.smtp_pass}}{{else}}$my_pass{{end}} \
     set realname = {{$account.realname}} \
     set from = {{$account.from}} \
     set signature = {{$account.signature}} \
@@ -47,6 +52,10 @@ folder-hook "{{$account.name}}" "\
     {{if not $account.ssl_use_sslv2}}un{{end}}set ssl_use_sslv2 \
     {{if not $account.ssl_use_sslv3}}un{{end}}set ssl_use_sslv3 \
 "
+    \
+    {{if not $account.mailboxes}}un{{end}}mailboxes {{or $account.mailboxes "*"}} \
+# \
+# {{if not $account.mailboxes}}un{{end}}mailboxes {{or $account.mailboxes "*"}} \
 # account-hook $folder "set imap_user=$imap_user imap_pass=$imap_pass"
 # folder-hook '{{$folder}}' 'unmailboxes *; mailboxes {{$account.spoolfile}}{{if $account.channels}}{{range $channel := $account.channels}} {{$channel.local}}{{end}}{{else}} {{$account.postponed}} {{$account.record}} {{$account.trash}}{{end}}'
 folder-hook '{{$folder}}' 'unmailboxes *; mailboxes `find {{$account.folder}} -mindepth 1 -maxdepth 1 -type d -exec echo -n " +{}" \;`'
