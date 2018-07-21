@@ -24,21 +24,22 @@ folder-hook "{{$account.name}}" "\
     {{end -}}
     \
     # Send options \
-    set sendmail = \"~/.mutt/scripts/msmtpq # --account={{$account.name}}\" \
-    set sendmail_wait = -1 \
     #set smtp_url = smtps://{{if $account.smtp_user}}{{$account.smtp_user}}{{else}}$imap_user{{end}}@{{$account.smtp_host}}:{{$account.smtp_port}} \
     #set smtp_pass = {{if $account.smtp_pass}}{{$account.smtp_pass}}{{else}}$my_pass{{end}} \
+    set sendmail = \"~/.mutt/scripts/msmtpq # --account {{$account.name}}\" \
+    set sendmail_wait = -1 \
     set realname = {{$account.realname}} \
     set from = {{$account.from}} \
     set signature = {{$account.signature}} \
-    #set use_from = "yes" \
-    #set envelope_from = "yes" \
+    set use_from = {{or $account.use_from true}} \
+    set envelope_from = {{or $account.envelope_from true}} \
     \
     # Mailbox options \
     set spoolfile = {{$account.spoolfile}} \
     set postponed = {{$account.postponed}} \
     set record = {{$account.record}} \
     set trash = {{$account.trash}} \
+    # set mbox =
     set move = {{if $account.move}}yes{{else}}no{{end}} \
     \
     # TODO \
@@ -55,14 +56,12 @@ folder-hook "{{$account.name}}" "\
     {{if not $account.ssl_starttls}}un{{end}}set ssl_starttls \
     {{if not $account.ssl_use_sslv2}}un{{end}}set ssl_use_sslv2 \
     {{if not $account.ssl_use_sslv3}}un{{end}}set ssl_use_sslv3 \
-"
     \
     {{if not $account.mailboxes}}un{{end}}mailboxes {{or $account.mailboxes "*"}} \
-# \
-# {{if not $account.mailboxes}}un{{end}}mailboxes {{or $account.mailboxes "*"}} \
+"
 # account-hook $folder "set imap_user=$imap_user imap_pass=$imap_pass"
 # folder-hook '{{$folder}}' 'unmailboxes *; mailboxes {{$account.spoolfile}}{{if $account.channels}}{{range $channel := $account.channels}} {{$channel.local}}{{end}}{{else}} {{$account.postponed}} {{$account.record}} {{$account.trash}}{{end}}'
-folder-hook '{{$folder}}' 'unmailboxes *; mailboxes `find {{$account.folder}} -mindepth 1 -maxdepth 1 -type d -exec echo -n " +{}" \;`'
+# folder-hook '{{$folder}}' 'unmailboxes *; mailboxes `find {{$account.folder}} -mindepth 1 -maxdepth 1 -type d -exec echo -n " +{}" \;`'
 macro index <f{{add 2 $index}}> '<sync-mailbox><enter-command>set folder = {{$folder}}<enter><enter-command>set spoolfile = {{$account.spoolfile}}<enter><change-folder>!<enter>'
 # macro index <f4> '<sync-mailbox><enter-command>~/.mutt/{{$account.name}}<enter><change-folder>!<enter>'
 {{- end}}

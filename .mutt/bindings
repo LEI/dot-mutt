@@ -1,0 +1,48 @@
+# vi: ft=muttrc
+# Bindings
+
+# Disable all commands to hide sensitive information
+# bind generic,alias,attach,browser,editor,index,compose,pager,pgp,postpone ':' noop
+
+# # Editor interface
+# bind editor <space> noop
+
+# Sidebar
+# bind index,pager \Ck sidebar-prev
+# bind index,pager \Cj sidebar-next
+# bind index,pager \Co sidebar-open
+# bind index,pager <F3> sidebar-page-up
+# bind index,pager <F4> sidebar-page-down
+# bind index,pager \Cp sidebar-prev-new
+# bind index,pager \Cn sidebar-next-new
+# bind index,pager B sidebar-toggle-visible
+
+# TODO: remap bind index R recall-message
+# bind index R imap-fetch-mail
+
+# # Vi
+
+# bind generic g noop
+# bind generic gg first-entry
+# #bind generic G last-entry
+
+# # Remap heasers to H instead of h
+# bind pager H display-toggle-weed
+
+# # Remap J from nex-entry to ?
+# # bind pager J next-entry
+
+# bind pager g  noop
+# bind pager gg top
+# bind pager G bottom
+# bind pager h previous-undeleted
+# bind pager j next-line
+# bind pager k previous-line
+# bind pager l next-undeleted
+# # bind pager <down> next-line
+# # bind pager <up> previous-line
+# bind attach,index g noop
+# bind attach,index gg first-entry
+# #bind attach,index G last-entry # TODO: check original G map
+# bind attach,index,pager \CD next-page
+# bind attach,index,pager \CU previous-page

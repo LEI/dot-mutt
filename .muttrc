@@ -35,12 +35,6 @@ auto_view text/html
 # Outgoing
 # set smtp_url="smtp://localhost:26"
 
-# Contact management
-set alias_file = ~/.mutt/aliases # =aliases
-
-source $alias_file
-source ~/.mutt/macros
-
 # Index interface
 set sort = reverse-threads
 set sort_aux = last-date-received
@@ -67,8 +61,6 @@ unset imap_passive
 # How often to check for new mail (time in seconds)
 set mail_check = 120
 
-# bind generic,alias,attach,browser,editor,index,compose,pager,pgp,postpone ':' noop
-
 # Dont add a '+' to urls that wrap
 unset markers
 
@@ -88,11 +80,8 @@ unset markers
 
 # folder-hook *user@gmail.com/ 'source ~/.mutt/work'
 # folder-hook *user@gmail.com/Family 'set realname = "Bob"'
-folder-hook . 'set my_folder = $folder'
-account-hook . 'set my_account = $account'
-
-# # Editor interface
-# bind editor <space> noop
+#folder-hook . 'set my_folder = $folder'
+#account-hook . 'set my_account = $account'
 
 # Sidebar interface
 set sidebar_visible = yes
@@ -136,51 +125,18 @@ set status_format = " %f [%r] [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%
 # set date_format = "%m%d"
 # set index_format = "%Z %D %-15.15n %s"
 
-# Bindings
+set alias_file = ~/.mutt/aliases # =aliases
+source $alias_file
 
-# Sidebar
-# bind index,pager \Ck sidebar-prev
-# bind index,pager \Cj sidebar-next
-# bind index,pager \Co sidebar-open
-# bind index,pager <F3> sidebar-page-up
-# bind index,pager <F4> sidebar-page-down
-# bind index,pager \Cp sidebar-prev-new
-# bind index,pager \Cn sidebar-next-new
-# bind index,pager B sidebar-toggle-visible
+source ~/.mutt/macros
 
-# TODO: remap bind index R recall-message
-# bind index R imap-fetch-mail
-bind index R imap-fetch-mail
-
-bind generic g  noop
-bind generic gg first-entry
-bind generic G last-entry
-
-# Remap heasers to H instead of h
-bind pager H display-toggle-weed
-
-# Remap J from nex-entry to ?
-# bind pager J next-entry
-
-bind pager g  noop
-bind pager gg top
-bind pager G bottom
-bind pager h previous-undeleted
-bind pager j next-line
-bind pager k previous-line
-bind pager l next-undeleted
-# bind pager <down> next-line
-# bind pager <up> previous-line
-bind attach,index g noop
-bind attach,index gg first-entry
-bind attach,index G last-entry # TODO: check original G map
-bind attach,index,pager \CD next-page
-bind attach,index,pager \CU previous-page
-
-# Load local config file for local overrides
-source `f=~/.muttrc.local; if [ ! -s "$f" ]; then f=/dev/null; fi; echo "$f"`
+source ~/.mutt/bindings
 
 # Match terminal theme colors (TODO: `$MUTT_COLORS`)
 source ~/.mutt/colors/solarized-dark-16
 
+# Load accounts defined in ~/.mailrc.yml
 source `f=~/.mutt/account; if [ ! -s "$f" ]; then f=/dev/null; fi; echo "$f"`
+
+# Load local config file for local overrides
+source `f=~/.muttrc.local; if [ ! -s "$f" ]; then f=/dev/null; fi; echo "$f"`
