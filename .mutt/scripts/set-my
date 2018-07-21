@@ -24,7 +24,7 @@ VAR="$1"
 shift
 VAL=$("$@")
 
-echo "my_$VAR=\"$VAL\""
+echo "set my_$VAR=\"$VAL\""
 
 # ARGS=("$@")
-# echo "my_$VAR=\"${ARGS[*]}\""
+# echo "set my_$VAR=\"${ARGS[*]}\""

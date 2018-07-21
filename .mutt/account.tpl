@@ -11,34 +11,35 @@ set folder = {{$folder}}
 set spoolfile = {{$account.spoolfile}}
 {{- end}}
 folder-hook "{{$account.name}}" "\
-    set hostname = {{if $account.host}}{{$account.host}}{{end}} \
+    set hostname = {{if $account.hostname}}{{$account.hostname}}{{end}} \
     \
     # Receive options \
     set folder = {{$folder}} \
     set imap_user = {{$account.user}} \
     {{if $account.pass_cmd -}}
-    source \"~/.mutt/scripts/set-my pass {{$account.pass_cmd}}\" \
+    source '~/.mutt/scripts/set-my pass {{$account.pass_cmd}} |' \
     set imap_pass = $my_pass \
     {{else -}}
-    set imap_pass = {{$account.pass}} \
+    set imap_pass = '{{$account.pass}}' \
     {{end -}}
     \
     # Send options \
-    #set smtp_url = smtps://{{if $account.smtp_user}}{{$account.smtp_user}}{{else}}$imap_user{{end}}@{{$account.smtp_host}}:{{$account.smtp_port}} \
-    #set smtp_pass = {{if $account.smtp_pass}}{{$account.smtp_pass}}{{else}}$my_pass{{end}} \
-    set sendmail = \"~/.mutt/scripts/msmtpq # --account {{$account.name}}\" \
+    set smtp_url = smtps://{{if $account.smtp_user}}{{$account.smtp_user}}{{else}}$imap_user{{end}}@{{$account.smtp_host}}:{{$account.smtp_port}} \
+    set smtp_pass = {{if $account.smtp_pass}}{{$account.smtp_pass}}{{else}}$my_pass{{end}} \
+    set sendmail = '~/.mutt/scripts/msmtpq # --account {{$account.name}}' \
     set sendmail_wait = -1 \
-    set realname = {{$account.realname}} \
-    set from = {{$account.from}} \
-    set signature = {{$account.signature}} \
-    set use_from = {{or $account.use_from true}} \
-    set envelope_from = {{or $account.envelope_from true}} \
+    set realname = '{{$account.realname}}' \
+    set from = '{{$account.from}}' \
+    set signature = '{{$account.signature}}' \
+    set use_from = {{if $account.use_from}}yes{{else}}no{{end}} \
+    set envelope_from = {{if $account.envelope_from}}yes{{else}}no{{end}} \
     \
     # Mailbox options \
-    set spoolfile = {{$account.spoolfile}} \
-    set postponed = {{$account.postponed}} \
-    set record = {{$account.record}} \
-    set trash = {{$account.trash}} \
+    {{if not $account.mailboxes}}un{{end}}mailboxes {{or $account.mailboxes "*"}} \
+    set spoolfile = '{{$account.spoolfile}}' \
+    set postponed = '{{$account.postponed}}' \
+    set record = '{{$account.record}}' \
+    set trash = '{{$account.trash}}' \
     # set mbox =
     set move = {{if $account.move}}yes{{else}}no{{end}} \
     \
@@ -50,14 +51,12 @@ folder-hook "{{$account.name}}" "\
     # set send_charset = utf-8:iso-8859-15:us-ascii \
     \
     # Connection options \
-    set certificate_file = {{$account.certificate_file}} \
-    set smtp_authenticators = {{$account.smtp_authenticators}} \
+    set certificate_file = '{{or $account.certificate_file ""}}' \
+    set smtp_authenticators = '{{$account.smtp_authenticators}}' \
     set ssl_force_tls = {{if $account.ssl_force_tls}}yes{{else}}no{{end}} \
     {{if not $account.ssl_starttls}}un{{end}}set ssl_starttls \
     {{if not $account.ssl_use_sslv2}}un{{end}}set ssl_use_sslv2 \
     {{if not $account.ssl_use_sslv3}}un{{end}}set ssl_use_sslv3 \
-    \
-    {{if not $account.mailboxes}}un{{end}}mailboxes {{or $account.mailboxes "*"}} \
 "
 # account-hook $folder "set imap_user=$imap_user imap_pass=$imap_pass"
 # folder-hook '{{$folder}}' 'unmailboxes *; mailboxes {{$account.spoolfile}}{{if $account.channels}}{{range $channel := $account.channels}} {{$channel.local}}{{end}}{{else}} {{$account.postponed}} {{$account.record}} {{$account.trash}}{{end}}'
