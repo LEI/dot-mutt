@@ -24,7 +24,7 @@ folder-hook "{{$account.name}}" "\
     {{end -}}
     \
     # Send options \
-    set sendmail = ~/.mutt/scripts/msmtpq # -a {{$account.name}} \
+    set sendmail = \"~/.mutt/scripts/msmtpq # --account={{$account.name}}\" \
     set sendmail_wait = -1 \
     #set smtp_url = smtps://{{if $account.smtp_user}}{{$account.smtp_user}}{{else}}$imap_user{{end}}@{{$account.smtp_host}}:{{$account.smtp_port}} \
     #set smtp_pass = {{if $account.smtp_pass}}{{$account.smtp_pass}}{{else}}$my_pass{{end}} \
