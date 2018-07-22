@@ -17,11 +17,11 @@ macro index B <limit>~d<7d
 # Jumps to result list
 # macro index <F9> "<change-folder-readonly>~/Maildir/search" "mu find results"
 
-# set my_maildir = "$folder/test"
-macro index I "<enter-command>source '~/.mutt/scripts/mu-index $my_account $my_folder'<return>" "mu"
-# Search mu index
-macro index S "<enter-command>source '~/.mutt/scripts/mu-find |'<return>" "mu"
-# account-hook $folder "exec <shell-escape>mu index --maildir $folder --rebuild"
+## set my_maildir = "$folder/test"
+#macro index I "<enter-command>source '~/.mutt/scripts/mu-index $my_account $my_folder'<return>" "mu"
+## Search mu index
+#macro index S "<enter-command>source '~/.mutt/scripts/mu-find |'<return>" "mu"
+## account-hook $folder "exec <shell-escape>mu index --maildir $folder --rebuild"
 
 # # Mailbox specific
 # # https://github.com/ork/mutt-office365/blob/master/lang/en_US

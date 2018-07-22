@@ -37,18 +37,22 @@ folder-hook '{{$account.name}}' '\
     {{end -}}
     set realname = "{{$account.realname}}"; \
     set from = "{{$account.from}}"; \
+    {{if not $account.alternates}}un{{end}}alternates "{{or $account.alternates "*"}}"; \
     set signature = "{{$account.signature}}"; \
     set use_from = {{if $account.use_from}}yes{{else}}no{{end}}; \
     set use_envelope_from = {{if $account.use_envelope_from}}yes{{else}}no{{end}};'
 # Mailbox options
 # set mbox = "";
-# {{if not $account.mailboxes}}un{{end}}mailboxes {{or $account.mailboxes "*"}};
 folder-hook '{{$account.name}}' '\
     set spoolfile = "{{$account.spoolfile}}"; \
     set postponed = "{{$account.postponed}}"; \
     set record = "{{$account.record}}"; \
     set trash = "{{$account.trash}}"; \
-    set move = {{if $account.move}}yes{{else}}no{{end}};'
+    unmailboxes *; \
+    mailboxes {{if $account.mailboxes}}{{$account.mailboxes}}{{else}}`find {{$account.folder}} -mindepth 1 -maxdepth 1 -type d -exec bash -c "printf \" +%s\" \"$(basename {})\"" \;`{{end}}; \
+    set move = {{if $account.move}}yes{{else}}no{{end}}; \
+    macro index S "<shell-escape>mbsync -V {{$account.name}}<return>" "mbsync"'
+# {{if not $account.mailboxes}}un{{end}}mailboxes {{or $account.mailboxes "*"}};
 # set attribution = "Le %d, %n a écrit :";
 # set date_format = "!%d/%m/%Y %H:%M";
 # set charset = "utf-8";
@@ -65,12 +69,8 @@ folder-hook '{{$account.name}}' '\
 # macro index <f4> '<sync-mailbox><enter-command>~/.mutt/{{$account.name}}<enter><change-folder>!<enter>'
 # account-hook $folder 'set imap_user=$imap_user imap_pass=$imap_pass'
 # folder-hook '{{$folder}}' 'unmailboxes *; mailboxes {{$account.spoolfile}}{{if $account.channels}}{{range $channel := $account.channels}} {{$channel.local}}{{end}}{{else}} {{$account.postponed}} {{$account.record}} {{$account.trash}}{{end}}'
-folder-hook '{{$account.name}}' '\
-    unmailboxes *; \
-    mailboxes {{if $account.mailboxes}}{{$account.mailboxes}}{{else}}`find {{$account.folder}} -mindepth 1 -maxdepth 1 -type d -exec echo -n " +{}" \;`{{end}}'
 # <shell-escape>mbsync --quiet {{$account.name}}<return><enter>?
 macro index <f{{add 2 $index}}> '<sync-mailbox>\
-<shell-escape>mbsync -V {{$account.name}}<return>\
 <enter-command>set folder = {{$folder}}<enter>\
 <enter-command>set spoolfile = {{$account.spoolfile}}<enter>\
 <change-folder>!<enter>'
