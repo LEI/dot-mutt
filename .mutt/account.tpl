@@ -25,9 +25,10 @@ folder-hook '{{$account.name}}' '\
     set imap_pass = "{{$account.pass}}";'
     {{end -}}
 # Send options
+# FIXME: custom sendmail script
 folder-hook '{{$account.name}}' '\
     set folder = "{{$folder}}"; \
-    set sendmail = "~/.mutt/scripts/sendmail --account {{$account.name}}"; \
+    set sendmail = "~/.mutt/scripts/msmtpq --account {{$account.name}}"; \
     set sendmail_wait = -1; \
     {{if $account.folder -}}
     unset smtp_url; \

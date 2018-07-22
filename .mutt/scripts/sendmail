@@ -3,20 +3,26 @@
 set -e
 
 # Msmtp Queue Binary
-MSMTPQ=~/.mail/scripts/msmtpq
-
-$MSMTPQ "$@"
+MSMTPQ=~/.mutt/scripts/msmtpq
 
 # TMPFILE=$(mktemp)
 
-# # save the message to a file
-# cat - >"$TMPFILE"
-# # extract the date header
-# DATE=$( formail -xDate: < "$TMPFILE" )
-# # convert to the current timezone (defined by TZ)
-# DATE=$( date -R -d "$DATE" )
-# # output the modified message
+# Save the message to a file
+cat - > "$TMPFILE"
+
+# TMPFILE=/tmp/sendmail.msmtpq
+# echo "$(date) --------------" >> "$TMPFILE"
+# cat - >> "$TMPFILE"
+
+# # Extract the date header
+# DATE=$(formail -xDate: < "$TMPFILE")
+# # Convert to the current timezone (defined by TZ)
+# DATE=$(date -R -d "$DATE")
+# # Output the modified message
 # echo "Date: $DATE"
-# formail -fI Date < "$TMPFILE"
-# # clean up
-# rm -f "$TMPFILE"
+
+# formail -fI Date < "$TMPFILE" | $MSMTPQ "$@"
+$MSMTPQ "$@"
+
+# Clean up
+rm -f "$TMPFILE"
