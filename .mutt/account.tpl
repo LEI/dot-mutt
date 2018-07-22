@@ -1,4 +1,4 @@
-# vi: ft=muttrc
+# vi: ft=muttrc{{/* https://github.com/ork/mutt-office365/blob/master/lang/en_US */}}
 
 # Important: set all options to avoid overlap
 # when switching accounts

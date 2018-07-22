@@ -12,20 +12,20 @@ macro index c '<change-folder>?<change-dir><home>^K=<enter>'
 # Limit listing to last week
 macro index B <limit>~d<7d
 
-# Search according to user query
-# macro index <F8> "<shell-escape>mu find --clearlinks --format=links --linksdir=~/Maildir/search " "mu find"
-# Jumps to result list
-# macro index <F9> "<change-folder-readonly>~/Maildir/search" "mu find results"
+# macro index,pager gd "<change-folder>$postponed<enter><buffy-list>" "go to postponed folder (drafts)"
+# macro index,pager gi "<change-folder>$spoolfile<enter><buffy-list>" "go to inbox folder"
+# macro index,pager gj "<change-folder>+spam<enter><buffy-list>"      "go to spam folder (junk)"
+# macro index,pager gr "<change-folder>^<enter><buffy-list>"          "refresh folder"
+# macro index,pager gs "<change-folder>$record<enter><buffy-list>"    "go to sent folder"
+# macro index,pager gt "<change-folder>$trash<enter><buffy-list>"     "go to trash folder"
 
-## set my_maildir = "$folder/test"
-#macro index I "<enter-command>source '~/.mutt/scripts/mu-index $my_account $my_folder'<return>" "mu"
-## Search mu index
-#macro index S "<enter-command>source '~/.mutt/scripts/mu-find |'<return>" "mu"
-## account-hook $folder "exec <shell-escape>mu index --maildir $folder --rebuild"
+# # Search according to user query
+# # macro index <F8> "<shell-escape>mu find --clearlinks --format=links --linksdir=~/Maildir/search " "mu find"
+# # Jumps to result list
+# # macro index <F9> "<change-folder-readonly>~/Maildir/search" "mu find results"
 
-# # Mailbox specific
-# # https://github.com/ork/mutt-office365/blob/master/lang/en_US
-# macro   index   gi "<change-folder>=INBOX<enter>"       "Go to Inbox"
-# macro   index   gs "<change-folder>=$my_sent<enter>"    "Go to Sent"
-# macro   index   gd "<change-folder>=$my_drafts<enter>"  "Go to Drafts"
-# macro   index   gt "<change-folder>=$my_trash<enter>"   "Go to Trash"
+# # set my_maildir = "$folder/test"
+# macro index gI "<enter-command>source '~/.mutt/scripts/mu-index $my_account $my_folder'<return>" "mu"
+# # Search mu index
+# macro index gS "<enter-command>source '~/.mutt/scripts/mu-find |'<return>" "mu"
+# # account-hook $folder "exec <shell-escape>mu index --maildir $folder --rebuild"

@@ -131,9 +131,9 @@ set status_format = " %f [%r] [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%
 set alias_file = ~/.mutt/aliases # =aliases
 source $alias_file
 
-source ~/.mutt/macros
-
 source ~/.mutt/bindings
+
+source ~/.mutt/macros
 
 # Match terminal theme colors (TODO: `$MUTT_COLORS`)
 source ~/.mutt/colors/solarized-dark-16
