@@ -6,7 +6,8 @@ role:
     # - slang # or ncursea
     # - name: urlview
     #   os: ["linux"]
-    - lynx
+    - lynx # - pandoc
+    - procmail # for formail
     - name: mutt
       # os: ["!darwin"]
       # eventually install -–with-s-lang

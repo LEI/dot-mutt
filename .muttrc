@@ -17,10 +17,11 @@ set certificate_file = ~/.mutt/certificates
 # set record="="
 
 # Editor
-# set editor='vim +/^$ "+setlocal fo+=w spell" +noh'
+# set editor = 'vim +/^$ "+setlocal fo+=w spell" +noh'
 set edit_headers # cleanup: unmy_hdr *
 set text_flowed
 # set tmpdir = /tmp
+# set display_filter = "~/.mutt/scripts/formatmail"
 
 # HTML parser
 # set mailcap_path = ~/.mailcap # MAILCAP
@@ -128,6 +129,7 @@ set status_format = " %f [%r] [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%
 # set date_format = "%m%d"
 # set index_format = "%Z %D %-15.15n %s"
 
+# TODO: per mbox
 set alias_file = ~/.mutt/aliases # =aliases
 source $alias_file
 

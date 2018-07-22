@@ -1,4 +1,5 @@
-# vi: ft=muttrc{{/* https://github.com/ork/mutt-office365/blob/master/lang/en_US */}}
+# vi: ft=muttrc
+{{- /* https://github.com/ork/mutt-office365/blob/master/lang/en_US */}}
 
 # Important: set all options to avoid overlap
 # when switching accounts
@@ -26,7 +27,7 @@ folder-hook '{{$account.name}}' '\
 # Send options
 folder-hook '{{$account.name}}' '\
     set folder = "{{$folder}}"; \
-    set sendmail = "~/.mutt/scripts/msmtpq --account {{$account.name}}"; \
+    set sendmail = "~/.mutt/scripts/sendmail --account {{$account.name}}"; \
     set sendmail_wait = -1; \
     {{if $account.folder -}}
     unset smtp_url; \
