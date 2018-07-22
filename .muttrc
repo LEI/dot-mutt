@@ -49,6 +49,9 @@ set sort_aux = last-date-received
 # macro index s "<shell-escape>mufind "
 # macro index gs "<change-folder-readonly>~/.search<enter>"
 
+# Pause to display messages in seconds
+set sleep_time = 0
+
 # Check for all subscribed IMAP folders
 set imap_check_subscribed
 
@@ -74,9 +77,9 @@ unset markers
 # source ~/.mutt/gpg.rc
 
 # https://gitlab.com/muttmua/mutt/wikis/UseCases/MultiAccounts
-# set reverse_name=yes
-# set reverse_realname=yes
-# set use_from = yes
+set reverse_name=yes
+set reverse_realname=yes
+#set use_from = yes
 
 # folder-hook *user@gmail.com/ 'source ~/.mutt/work'
 # folder-hook *user@gmail.com/Family 'set realname = "Bob"'

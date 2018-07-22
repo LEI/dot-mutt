@@ -1,5 +1,7 @@
 # vi: ft=muttrc
 # Bindings
+# https://wiki.archlinux.org/index.php/Mutt#Key_bindings
+# http://hermitte.free.fr/mutt/files/mailrc/muttrc-bindings.html
 
 # Disable all commands to hide sensitive information
 # bind generic,alias,attach,browser,editor,index,compose,pager,pgp,postpone ':' noop
