@@ -45,7 +45,7 @@ set sort_aux = last-date-received
 # set index_format="%D %Z %-15.15L %s"
 
 # No prompt to continue after running external commands
-#unset wait_key
+unset wait_key
 
 # # mu search
 # macro index S "<save-message>"

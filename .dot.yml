@@ -20,7 +20,10 @@ role:
     - isync # Requires ~/.mbsyncrc
     # - khard
     # - msmtp # Requires ~/.msmtprc
-    - mu # (maildir-utils)
+    - name: mu
+      os: ["darwin"]
+    - name: maildir-utils
+      os: ["debian"]
     # - ripmime
     # - w3m
     # - vdirsyncer
@@ -34,10 +37,10 @@ role:
     - ".mutt/accounts/*:.mutt/accounts"
     - ".mutt/colors/*:.mutt/colors" # Custom themes
     - ".mutt/scripts/*:.mutt/scripts"
-  install:
+  post_install:
     - "mkdir -p ~/.mutt/cache/{headers,bodies}"
+    - "if test ! -f ~/.mutt/aliases; then echo '# vi:ft=muttrc' > ~/.mutt/aliases; fi"
     # - "mu index --maildir ~/.mail"
-    # - ""
   # cron:
   #   - test -f ~/.mbsyncrc && mbsync --all # --verbose
   #   - mu index --quiet # (on update: --rebuild)
