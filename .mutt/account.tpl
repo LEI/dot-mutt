@@ -28,14 +28,16 @@ folder-hook '{{$account.name}}' '\
 # FIXME: custom sendmail script
 folder-hook '{{$account.name}}' '\
     set folder = "{{$folder}}"; \
-    set sendmail = "~/.mutt/scripts/msmtpq --account {{$account.name}}"; \
-    set sendmail_wait = -1; \
     {{if $account.folder -}}
     unset smtp_url; \
     unset smtp_pass; \
+    set sendmail = "~/.mutt/scripts/mutt-send --account {{$account.name}}"; \
+    set sendmail_wait = -1; \
     {{else -}}
     set smtp_url = smtps://{{if $account.smtp_user}}{{$account.smtp_user}}{{else}}$imap_user{{end}}@{{$account.smtp_host}}:{{$account.smtp_port}}; \
     set smtp_pass = {{if $account.smtp_pass}}{{$account.smtp_pass}}{{else}}$my_pass{{end}}; \
+    unset sendmail; \
+    unset sendmail_wait; \
     {{end -}}
     set realname = "{{$account.realname}}"; \
     set from = "{{$account.from}}"; \

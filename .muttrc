@@ -21,7 +21,7 @@ set certificate_file = ~/.mutt/certificates
 set edit_headers # cleanup: unmy_hdr *
 set text_flowed
 # set tmpdir = /tmp
-# set display_filter = "~/.mutt/scripts/formatmail"
+# set display_filter = "~/.mutt/scripts/mutt-format"
 
 # HTML parser
 # set mailcap_path = ~/.mailcap # MAILCAP
@@ -44,8 +44,10 @@ set sort_aux = last-date-received
 # set date_format="%Y-%m-%d"
 # set index_format="%D %Z %-15.15L %s"
 
+# No prompt to continue after running external commands
+unset wait_key
+
 # # mu search
-# unset wait_key
 # macro index S "<save-message>"
 # macro index s "<shell-escape>mufind "
 # macro index gs "<change-folder-readonly>~/.search<enter>"

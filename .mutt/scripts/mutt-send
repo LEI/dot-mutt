@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 
+# http://nosubstance.me/post/mutt-secret-sauce/
+# https://github.com/oblitum/dotfiles/blob/ArchLinux/.local/bin/MIMEmbellish
+# https://github.com/wincent/wincent/blob/master/roles/dotfiles/files/.mutt/scripts/msmtp.rb
+
 set -e
 
 # Msmtp Queue Binary
 MSMTPQ=~/.mutt/scripts/msmtpq
 
-# TMPFILE=$(mktemp)
+TMPFILE=/tmp/mutt.sendmail # $(mktemp)
 
 # Save the message to a file
 cat - > "$TMPFILE"
@@ -25,4 +29,4 @@ cat - > "$TMPFILE"
 $MSMTPQ "$@"
 
 # Clean up
-rm -f "$TMPFILE"
+# rm -f "$TMPFILE"
