@@ -9,7 +9,7 @@ set -e
 # Msmtp Queue Binary
 MSMTPQ=~/.mutt/scripts/msmtpq
 
-TMPFILE=/tmp/mutt.sendmail # $(mktemp)
+TMPFILE=$(mktemp)
 
 # Save the message to a file
 cat - > "$TMPFILE"
@@ -26,7 +26,7 @@ cat - > "$TMPFILE"
 # echo "Date: $DATE"
 
 # formail -fI Date < "$TMPFILE" | $MSMTPQ "$@"
-$MSMTPQ "$@"
+$MSMTPQ "$@" < "$TMPFILE"
 
 # Clean up
-# rm -f "$TMPFILE"
+rm -f "$TMPFILE"

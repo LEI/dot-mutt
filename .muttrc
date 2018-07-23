@@ -45,7 +45,7 @@ set sort_aux = last-date-received
 # set index_format="%D %Z %-15.15L %s"
 
 # No prompt to continue after running external commands
-unset wait_key
+#unset wait_key
 
 # # mu search
 # macro index S "<save-message>"
@@ -131,8 +131,10 @@ set status_format = " %f [%r] [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%
 # set date_format = "%m%d"
 # set index_format = "%Z %D %-15.15n %s"
 
-# TODO: per mbox
+# TODO: per mbox?
 set alias_file = ~/.mutt/aliases # =aliases
+# set sort_alias = alias
+# set reverse_alias = yes
 source $alias_file
 
 source ~/.mutt/bindings

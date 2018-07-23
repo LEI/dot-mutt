@@ -19,7 +19,7 @@ folder-hook '{{$account.name}}' '\
     set folder = "{{$folder}}"; \
     set imap_user = {{$account.user}}; \
     {{if $account.pass_cmd -}}
-    source "~/.mutt/scripts/set-my pass {{$account.pass_cmd}} |"; \
+    source "~/.mutt/scripts/mutt-set my_pass {{$account.pass_cmd}} |"; \
     set imap_pass = $my_pass;'
     {{else -}}
     set imap_pass = "{{$account.pass}}";'
@@ -31,7 +31,7 @@ folder-hook '{{$account.name}}' '\
     {{if $account.folder -}}
     unset smtp_url; \
     unset smtp_pass; \
-    set sendmail = "~/.mutt/scripts/mutt-send --account {{$account.name}}"; \
+    set sendmail = "$HOME/.mutt/scripts/mutt-send --account {{$account.name}}"; \
     set sendmail_wait = -1; \
     {{else -}}
     set smtp_url = smtps://{{if $account.smtp_user}}{{$account.smtp_user}}{{else}}$imap_user{{end}}@{{$account.smtp_host}}:{{$account.smtp_port}}; \

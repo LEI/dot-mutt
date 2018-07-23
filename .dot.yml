@@ -29,7 +29,6 @@ role:
     # - ".lynxrc"
     - ".mailcap"
     - ".muttrc" # Add line to source init instead?
-    - ".mutt/aliases:.mutt"
     - ".mutt/bindings:.mutt"
     - ".mutt/macros:.mutt"
     - ".mutt/accounts/*:.mutt/accounts"
