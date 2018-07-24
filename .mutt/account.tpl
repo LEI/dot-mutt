@@ -73,8 +73,9 @@ folder-hook '{{$account.name}}' '\
 # macro index <f4> '<sync-mailbox><enter-command>~/.mutt/{{$account.name}}<enter><change-folder>!<enter>'
 # account-hook $folder 'set imap_user=$imap_user imap_pass=$imap_pass'
 # folder-hook '{{$folder}}' 'unmailboxes *; mailboxes {{$account.spoolfile}}{{if $account.channels}}{{range $channel := $account.channels}} {{$channel.local}}{{end}}{{else}} {{$account.postponed}} {{$account.record}} {{$account.trash}}{{end}}'
-# <shell-escape>mbsync --quiet {{$account.name}}<return><enter>?
+# mbsync --all --quiet
 macro index <f{{add 2 $index}}> '<sync-mailbox>\
+<shell-escape>mbsync -V {{$account.name}}<return>\
 <enter-command>set folder = {{$folder}}<enter>\
 <enter-command>set spoolfile = {{$account.spoolfile}}<enter>\
 <change-folder>!<enter>'
