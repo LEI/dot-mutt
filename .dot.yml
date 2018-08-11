@@ -28,17 +28,22 @@ role:
     # - w3m
     # - vdirsyncer
     # - pip3 install -I urlscan
+  dir:
+    - .mutt
+    - .mutt/cache/headers
+    - .mutt/cache/bodies
+    - .mutt/colors
+    - .mutt/scripts
   link:
     # - ".lynxrc"
     - ".mailcap"
     - ".muttrc" # Add line to source init instead?
     - ".mutt/bindings:.mutt"
     - ".mutt/macros:.mutt"
-    - ".mutt/accounts/*:.mutt/accounts"
     - ".mutt/colors/*:.mutt/colors" # Custom themes
     - ".mutt/scripts/*:.mutt/scripts"
   post_install:
-    - "mkdir -p ~/.mutt/cache/{headers,bodies}"
+    # - "mkdir -p ~/.mutt/cache/{headers,bodies}"
     - "if test ! -f ~/.mutt/aliases; then echo '# vi:ft=muttrc' > ~/.mutt/aliases; fi"
     # - "mu index --maildir ~/.mail"
   # cron:
