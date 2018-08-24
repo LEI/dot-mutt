@@ -5,7 +5,7 @@
 defaults
 auth           on
 tls            on
-tls_trust_file {{.tls_trust_file}}
+tls_trust_file {{.TLS_TRUST_FILE}}
 logfile        ~/.msmtp.log
 {{range $index, $account := .accounts}}
 # {{title $account.name}} Account
