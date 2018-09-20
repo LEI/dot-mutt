@@ -6,7 +6,7 @@ role:
     # - slang # or ncursea
     # - name: urlview
     #   os: ["linux"]
-    - lynx # - pandoc
+    - lynx # pandoc, links
     - procmail # for formail
     - name: mutt
       # os: ["!darwin"]
@@ -43,9 +43,15 @@ role:
     - ".mutt/colors/*:.mutt/colors" # Custom themes
     - ".mutt/scripts/*:.mutt/scripts"
   post_install:
+    # - command: 'cp "$LYNX_CFG" ~/.lynxrc'
+    #   if: 'test ! -f ~/.lynxrc -a -f "$LYNX_CFG"; then'
+    #   env:
+    #     PREFIX: "${PREFIX:-$(brew --prefix)}"
+    #     LYNX_CFG: "$PREFIX/etc/lynx.cfg"
     # - "mkdir -p ~/.mutt/cache/{headers,bodies}"
-    - "if test ! -f ~/.mutt/aliases; then echo '# vi:ft=muttrc' > ~/.mutt/aliases; fi"
-    # - "mu index --maildir ~/.mail"
+    - command: "echo '# vi:ft=muttrc' > ~/.mutt/aliases"
+      if: "test ! -f ~/.mutt/aliases"
+    # - mu index --maildir ~/.mail
   # cron:
   #   - test -f ~/.mbsyncrc && mbsync --all # --verbose
   #   - mu index --quiet # (on update: --rebuild)

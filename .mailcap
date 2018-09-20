@@ -1,5 +1,3 @@
-# TODO: cp /usr/local/etc/lynx.cfg ~/.lynxrc
-# Set verbose images to true?
 # Display images: https://github.com/neomutt/neomutt/issues/471
 text/html; lynx -dump %s; nametemplate=%s.html; copiousoutput;
 #text/html; pandoc -f html -t markdown; copiousoutput; compose=vim %s
